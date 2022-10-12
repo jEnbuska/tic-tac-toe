@@ -2,8 +2,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Mark } from "../../types";
 import createGame from "../../utils/create-game";
 import getWinRanges from "../../utils/get-win-ranges";
+import isDraw from "../../utils/is-draw";
 import Cell from "../Cell/Cell";
-import WinnerAnnouncement from "../Winner/WinnerAnnouncement";
+import GameEndAnnouncement from "../GameEndAnnouncement/GameEndAnnouncement";
 import WinRange from "../WinRange/WinRange";
 import styles from "./styles.module.css";
 
@@ -33,16 +34,21 @@ const Game = () => {
   }, []);
   const { grid, turn } = game;
   const ref = useRef<HTMLDivElement>(null);
+  const draw = isDraw(grid);
   useEffect(() => {
-    if (winRanges.length) {
+    if (winRanges.length || draw) {
       ref.current?.setAttribute("inert", `true`);
     } else {
       ref.current?.removeAttribute("inert");
     }
-  }, [winRanges]);
+  }, [winRanges, draw]);
   return (
     <div className={styles.game}>
-      <WinnerAnnouncement winner={winRanges[0]?.mark} restart={restart} />
+      <GameEndAnnouncement
+        winner={winRanges[0]?.mark}
+        restart={restart}
+        draw={isDraw(grid)}
+      />
       <div className={styles.grid} ref={ref}>
         {grid.map((row, y) => (
           <div key={`row-${y}`} className={styles.row}>

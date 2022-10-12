@@ -1,4 +1,4 @@
-.winnerAnnouncement {
+.gameEndAnnouncement {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -8,15 +8,16 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  z-index: 1;
 }
 
-.winnerAnnouncement[data-winner="X"] {
+.gameEndAnnouncement[data-winner="X"] {
   color: blue;
 }
-.winnerAnnouncement[data-winner="O"] {
+.gameEndAnnouncement[data-winner="O"] {
   color: red;
 }
-.winnerAnnouncementRestart {
+.gameEndAnnouncementRestart {
   border: 2px solid black;
   border-radius: 1rem;
   font-size: .5rem;
