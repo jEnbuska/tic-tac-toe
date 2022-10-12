@@ -1,0 +1,7 @@
+.winRange {
+  outline-width: 0.1rem;
+  outline-style: solid;
+  transform-origin: left;
+  position: absolute;
+  translate: .5rem .5rem;
+}

@@ -1,0 +1,61 @@
+.cell {
+  width: 1rem;
+  height: 1rem;
+  box-sizing: border-box;
+  line-height: 1rem;
+  font-size: 1rem;
+  background-color: transparent;
+  padding: 0;
+  border: .5px solid blue;
+  cursor: default;
+  margin: auto;
+  position: relative;
+}
+.cell[data-mark="X"] {
+  color: blue;
+}
+.cell[data-mark="O"] {
+  color: red;
+}
+.cell[data-empty="true"] {
+  cursor: pointer;
+}
+
+.cell:after {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: block;
+  scale: .6;
+  opacity: .6;
+  top: 0;
+}
+
+.cell[data-mark="O"]:hover:after {
+  content: "O";
+}
+.cell[data-empty="false"]:after {
+  display: none;
+}
+.cell[data-mark="X"]:hover:after {
+  content: "X";
+}
+
+.cellValueTip {
+  opacity: 0;
+  display: inline-block;
+  transition: opacity .2s;
+  scale: .6;
+}
+
+.cellValue:empty {
+  scale: 0;
+}
+
+.cellValue {
+  display: inline-block;
+  scale: 1;
+  transition: scale .15s cubic-bezier(0, 0, 0.56, 2.04);
+  cursor: default;
+}
+
